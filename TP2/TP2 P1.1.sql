@@ -1,0 +1,44 @@
+-- SIN JOIN, SUBCONSULTAS,ETC
+-- ¿Qué socios tienen barcos amarrados en un número de amarre mayor que 10?
+SELECT nombre 
+FROM Socios 
+WHERE id_socio IN (
+    SELECT id_socio FROM Barcos WHERE numero_amarre > 10
+);
+
+-- ¿Cuáles son los nombres de los barcos y sus cuotas de aquellos barcos cuyo socio se llama 'Juan Pérez'?
+SELECT nombre,cuota
+FROM Barcos
+WHERE id_socio = (
+	SELECT id_socio FROM Socios WHERE nombre= "Juan Pérez"
+);
+
+-- ¿Cuántas salidas ha realizado el barco con matrícula 'ABC123'?
+select COUNT(*) AS cantidad_salidas
+from Salidas
+WHERE matricula = "ABC123"
+
+-- Lista los barcos que tienen una cuota mayor a 500 y sus respectivos socios
+SELECT Barcos.nombre AS nombre_barco, Socios.nombre AS nombre_socio
+FROM Barcos
+WHERE Barcos.id_socio = Socios.id_socio
+AND Barcos.cuota > 500;
+
+-- ¿Qué barcos han salido con destino a 'Mallorca'?
+SELECT nombre
+FROM Barcos
+WHERE matricula IN (
+	SELECT matricula FROM Salidas WHERE destino = "Mallorca"
+)
+
+-- ¿Qué patrones (nombre y dirección) han llevado un barco cuyo socio vive en 'Barcelona'?
+SELECT patron_nombre, patron_direccion
+FROM Salidas
+WHERE matricula IN (
+    SELECT matricula
+    FROM Barcos
+    WHERE id_socio IN (
+        SELECT id_socio FROM Socios WHERE direccion LIKE '%Barcelona%'
+    )
+);
+
