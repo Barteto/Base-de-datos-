@@ -1,11 +1,11 @@
 CREATE TABLE Clientes (
-    dni VARCHAR(20) PRIMARY KEY,
+    dni VARCHAR(20) PRIMARY KEY NOT NULL,
     nombre VARCHAR(100),
     direccion VARCHAR(255)
 );
 
 CREATE TABLE Asuntos (
-numero_expediente INT PRIMARY KEY,
+numero_expediente INT PRIMARY KEY NOT NULL,
 dni_cliente VARCHAR(20),
 fecha_inicio DATE,
 fecha_fin DATE,
