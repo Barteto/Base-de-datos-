@@ -1,12 +1,12 @@
 
 CREATE TABLE Socios (
-    id_socio INT PRIMARY KEY,
+    id_socio INT PRIMARY KEY NOT NULL,
     nombre VARCHAR(100),
     direccion VARCHAR(255)
 );
 
 CREATE TABLE Barcos (
-    matricula VARCHAR(20) PRIMARY KEY,
+    matricula VARCHAR(20) PRIMARY  KEY NOT NULL,
     nombre VARCHAR(100),
     numero_amarre INT,
     cuota DECIMAL(10, 2),
@@ -15,7 +15,7 @@ CREATE TABLE Barcos (
 );
 
 CREATE TABLE Salidas (
-    id_salida INT PRIMARY KEY,
+    id_salida INT PRIMARY KEY NOT NULL,
     matricula VARCHAR(20),
     fecha_salida DATE,
     hora_salida TIME,
