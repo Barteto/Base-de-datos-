@@ -1,9 +1,8 @@
 
 CREATE DATABASE IF NOT EXISTS programas_radio;
 USE programas_radio;
--- ========================
--- Tabla RADIO_ANIO
--- ========================
+
+
 CREATE TABLE RADIO_ANIO (
     radio VARCHAR(50) NOT NULL,
     anio YEAR NOT NULL,
@@ -11,9 +10,8 @@ CREATE TABLE RADIO_ANIO (
     gerente VARCHAR(100) NOT NULL,
     PRIMARY KEY (radio, anio)
 );
--- ========================
--- Tabla PROGRAMA
--- ========================
+
+
 CREATE TABLE PROGRAMA (
     radio VARCHAR(50) NOT NULL,
     anio YEAR NOT NULL,
