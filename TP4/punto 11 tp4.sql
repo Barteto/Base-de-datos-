@@ -6,21 +6,20 @@ CREATE PROCEDURE AplicarInteres(
     IN p_saldoMin DECIMAL(10,2)
 )
 BEGIN
-    -- Declaración de variables
+   
     DECLARE v_numCuenta INT;
     DECLARE v_saldoActual DECIMAL(10,2);
     DECLARE fin_cursor BOOLEAN DEFAULT FALSE;
 
-    -- Cursor para recorrer las cuentas que superen el saldo mínimo
+  
     DECLARE curCuentas CURSOR FOR
         SELECT numero_cuenta, saldo
         FROM cuentas
         WHERE saldo > p_saldoMin;
 
-    -- Handler para detectar fin del cursor
+
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin_cursor = TRUE;
 
-    -- Abro el cursor
     OPEN curCuentas;
 
     leer: LOOP
@@ -30,13 +29,13 @@ BEGIN
             LEAVE leer;
         END IF;
 
-        -- Aplico el porcentaje de interés
+     
         UPDATE cuentas
         SET saldo = saldo + (saldo * (p_porcentaje / 100))
         WHERE numero_cuenta = v_numCuenta;
     END LOOP;
 
-    -- Cierro el cursor
+
     CLOSE curCuentas;
 END$$
 
